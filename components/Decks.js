@@ -12,7 +12,6 @@ class Decks extends Component {
         refreshing: false
     }
     componentDidMount() {
-        console.log(getDemoDecks())
         this.setState(() => ({data: getDemoDecks()}))
     }
 
@@ -21,7 +20,7 @@ class Decks extends Component {
         return (
             <FlatList
                 data={this.state.data}
-                renderItem={({item}) => (
+                renderItem={({item}) =>
                     <ListItem
                         title={item.title}
                         subtitle={containsQuestion(item) ? `${item.questions[0].question}` : '' }
@@ -38,8 +37,6 @@ class Decks extends Component {
                             }
                         }
                     />
-                    )
-
                 }
                 keyExtractor={(item, index) => `${item.title}-${index}`}
             />
