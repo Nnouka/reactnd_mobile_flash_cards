@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Card, Button, Icon} from 'react-native-elements';
 import {Text, View, StyleSheet} from 'react-native';
-import {red, white} from "../utils/colors";
+import {green, red, white} from "../utils/colors";
 
 class DeckItem extends Component {
     render() {
@@ -16,7 +16,7 @@ class DeckItem extends Component {
                     buttonStyle={styles.buttonStyle} />
                 <Button
                     title='Start Quiz'
-                    buttonStyle={[styles.buttonStyle, {backgroundColor: cardCount > 0 ? 'green' : red}]} />
+                    buttonStyle={[styles.buttonStyle, {backgroundColor: cardCount > 0 ? green : red}]} />
             </Card>
         );
     }
@@ -31,5 +31,5 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         margin: 10,
     }
-})
+});
 export default DeckItem;
