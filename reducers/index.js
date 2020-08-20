@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {ADD_DECK_TITLE, RECEIVE_DECKS} from '../actions';
+import {ADD_DECK_TITLE, NEW_DECK, RECEIVE_DECKS} from '../actions';
 
 function decks(state = {}, action) {
     switch (action.type) {
@@ -8,6 +8,14 @@ function decks(state = {}, action) {
                 ...state,
                 ...action.decks
             };
+        case NEW_DECK :
+            return {
+                ...state,
+                [action.title]: {
+                    title: action.title,
+                    questions: []
+                }
+            }
         default :
             return state;
     }

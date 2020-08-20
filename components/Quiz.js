@@ -6,8 +6,8 @@ import {connect} from 'react-redux';
 
 const ANSWER = 'Answer';
 const QUESTION = 'Question';
-const NO_QUESTION_GIST = 'Sorry, You cannot take this quiz at the moment because there is no question';
-const FINISHER_GIST = 'Congratulations, You finished this quiz. See how well you did below. You can always try again'
+const NO_QUESTION_GIST = '🧷 Sorry, You cannot take this quiz at the moment because there is no question';
+const FINISHER_GIST = '🎓 Congratulations, You finished this quiz. See how well you did below. You can always try again'
 class Quiz extends Component {
     state = {
         toggleTo: ANSWER,
@@ -144,7 +144,7 @@ class Quiz extends Component {
                             <Button
                                 title={toggleTo}
                                 titleStyle={styles.toggleBtnText}
-                                style={styles.answerToggleBtn}
+                                type='clear'
                                 onPress={() => this.handleToggleTo()}
                             />
                             <Button

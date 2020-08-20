@@ -27,53 +27,7 @@ export  const DATA = {
 
         ]
     },
-    Java: {
-        title: 'Java'
+    Java_and_php: {
+        title: 'Java_and_php'
     },
-    XML: {
-        title: 'XML',
-            questions: [
-            {
-                question: 'What is a value?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    JSON: {
-        title: 'JSON',
-            questions: [
-            {
-                question: 'What is JSON?',
-                answer: 'JavaScript Object Notation'
-            }
-        ]
-    },
-    Http: {
-        title: 'Http',
-            questions: [
-
-        ]
-    },
-    Angular: {
-        title: 'Angular',
-            questions: [
-
-        ]
-    },
-    Git: {
-        title: 'Git',
-            questions: [
-
-        ]
-    },
-    ML: {
-        title: 'ML',
-    },
-    AI: {
-        title: 'AI',
-    },
-    Cryptography: {
-        title: 'Cryptography',
-    },
-
 };

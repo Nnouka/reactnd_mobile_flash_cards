@@ -5,6 +5,7 @@ import {blue, green, white} from "../utils/colors";
 
 import {connect} from 'react-redux';
 import {addDeckTitle} from "../actions";
+import {underscoreToSpace} from "../utils/strings";
 
 class Decks extends Component {
     handleDeckSelect(navigation, title) {
@@ -21,7 +22,7 @@ class Decks extends Component {
                 data={decks}
                 renderItem={({item}) =>
                     <ListItem
-                        title={item.title}
+                        title={underscoreToSpace(item.title)}
                         subtitle={containsQuestion(item) ? `${item.questions[0].question}` : '' }
                         chevron
                         titleStyle={{fontSize: 20, color: blue}}

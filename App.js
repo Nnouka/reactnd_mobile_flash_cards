@@ -7,9 +7,14 @@ import middleware from './middleware'
 
 
 import NavigationGraph from './components/NavigationGraph';
+import {initDecks} from "./utils/helpers";
 
 
 class App extends Component {
+
+    componentDidMount() {
+        initDecks();
+    }
 
     render() {
         return (

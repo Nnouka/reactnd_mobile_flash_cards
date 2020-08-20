@@ -3,12 +3,13 @@ import {Card, Button, Icon} from 'react-native-elements';
 import {Text, View, StyleSheet} from 'react-native';
 import {green, red, white} from "../utils/colors";
 import {connect} from 'react-redux';
+import {underscoreToSpace} from "../utils/strings";
 
 class DeckItem extends Component {
     render() {
         const {title, cardCount, navigation} = this.props;
         return (
-            <Card title={title}>
+            <Card title={underscoreToSpace(title)}>
                 <Text style={styles.textStyle}>
                     {`${cardCount} card${cardCount > 1 ? 's': ''}`}
                 </Text>
