@@ -5,6 +5,7 @@ import {Icon} from 'react-native-elements';
 import Decks from './Decks';
 import {NavigationContainer} from '@react-navigation/native';
 import DeckItem from './DeckItem';
+import Quiz from './Quiz';
 import {white, purple} from "../utils/colors";
 
 import {connect} from 'react-redux';
@@ -23,24 +24,28 @@ function Tabs() {
 
 const MainStack = createStackNavigator();
 
-const MainNavigator = () =>
-    <NavigationContainer>
-        <MainStack.Navigator>
-            <MainStack.Screen name="Mobile FlashCards" component={Tabs} />
-            <MainStack.Screen name="Deck Item" component={DeckItem}/>
-        </MainStack.Navigator>
-    </NavigationContainer>
-
 class NavigationGraph extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(receiveDecks(getDemoDecks()))
     }
     render() {
+        const {deckTitle} = this.props
+        const getTitle = () => `${deckTitle != null ? deckTitle + ' Cards' : 'Decks'}`
         return (
-            <MainNavigator />
+            <NavigationContainer>
+                <MainStack.Navigator>
+                    <MainStack.Screen name="Mobile FlashCards" component={Tabs} />
+                    <MainStack.Screen name="Deck" options={{ title: getTitle() }} component={DeckItem}/>
+                    <MainStack.Screen name="Quiz" options={{ title: getTitle() }} component={Quiz}/>
+                </MainStack.Navigator>
+            </NavigationContainer>
         );
     }
 }
-
-export default connect()(NavigationGraph);
+function mapStatToProps({title}) {
+    return {
+        deckTitle: title
+    }
+}
+export default connect(mapStatToProps)(NavigationGraph);

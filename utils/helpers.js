@@ -7,3 +7,7 @@ export function getDemoDecks() {
 function getDecksData() {
     return DATA;
 }
+
+export function getDeck(title) {
+    return getDecksData()[title];
+}

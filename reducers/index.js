@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {RECEIVE_DECKS} from '../actions';
+import {ADD_DECK_TITLE, RECEIVE_DECKS} from '../actions';
 
 function decks(state = {}, action) {
     switch (action.type) {
@@ -13,6 +13,16 @@ function decks(state = {}, action) {
     }
 }
 
+function title(state = null, action) {
+    switch (action.type) {
+        case ADD_DECK_TITLE :
+            return action.title;
+        default :
+            return state;
+    }
+}
+
 export default combineReducers({
-    decks
+    decks,
+    title
 });

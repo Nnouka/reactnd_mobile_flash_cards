@@ -4,11 +4,17 @@ import {ListItem} from "react-native-elements";
 import {blue, green, white} from "../utils/colors";
 
 import {connect} from 'react-redux';
+import {addDeckTitle} from "../actions";
 
 class Decks extends Component {
+    handleDeckSelect(navigation, title) {
+        const {dispatch} = this.props;
+        dispatch(addDeckTitle(title));
+        navigation.navigate('Deck');
+    }
     render() {
         const containsQuestion = (item) => item.questions !== undefined && item.questions.length > 0;
-        const {decks} = this.props;
+        const {decks, navigation} = this.props;
         console.log(this.props);
         return (
             <FlatList
@@ -20,6 +26,7 @@ class Decks extends Component {
                         chevron
                         titleStyle={{fontSize: 20, color: blue}}
                         subtitleStyle={{fontStyle: 'italic'}}
+                        onPress={() => this.handleDeckSelect(navigation, item.title)}
                         leftElement={() =>
                             <View style={[
                                 styles.avatar, {backgroundColor: containsQuestion(item) ? green : blue}]}>

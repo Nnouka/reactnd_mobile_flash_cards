@@ -49,7 +49,7 @@ class App extends Component {
      render() {
          const {deckIndex, decks, mounted} = this.state;
          const countCards = (deck) => deck.questions !== undefined ? deck.questions.length : 0;
-         const questionBody = mounted ? this.questionGenerator() : {};
+         const questionStem = mounted ? this.questionGenerator() : {};
          const onAnswered = () => {
              this.setState((prevState) => ({
                  ...prevState, questionIndex: prevState.questionIndex + 1
@@ -63,7 +63,7 @@ class App extends Component {
                  {
                      mounted &&
                      (
-                         questionBody === undefined ?
+                         questionStem === undefined ?
                          <View >
                              <Text >
                                  Finished
@@ -71,8 +71,8 @@ class App extends Component {
                          </View> : <Quiz
                          title={decks[deckIndex].title}
                          cardCount={countCards(decks[deckIndex])}
-                         cardNum={questionBody.index + 1}
-                         questionStem={questionBody.question}
+                         cardNum={questionStem.index + 1}
+                         questionStem={questionStem.question}
                          onAnswered={() => onAnswered()}
                      />)
                  }

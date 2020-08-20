@@ -55,7 +55,7 @@ export  const DATA = {
         ]
     },
     Angular: {
-        title: 'Angular 8',
+        title: 'Angular',
             questions: [
 
         ]
@@ -67,12 +67,12 @@ export  const DATA = {
         ]
     },
     ML: {
-        title: 'Machine Learning',
+        title: 'ML',
     },
     AI: {
-        title: 'Artificial Intelligence',
+        title: 'AI',
     },
-    Crypto: {
+    Cryptography: {
         title: 'Cryptography',
     },
 
