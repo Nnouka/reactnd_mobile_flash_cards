@@ -24,3 +24,38 @@ export function initDecks() {
             }
         })
 }
+
+export function saveDeckTitle(title) {
+    AsyncStorage.getItem(DECKS_KEY)
+        .then(JSON.parse)
+        .then((state) => {
+            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(
+                {
+                    ...state,
+                    [title]: {
+                        title,
+                        questions: []
+                    }
+                }
+            ))
+        })
+}
+
+export function addCardToDeck(title, card) {
+    AsyncStorage.getItem(DECKS_KEY)
+        .then(JSON.parse)
+        .then((state) => {
+            AsyncStorage.setItem(DECKS_KEY, JSON.stringify(
+                {
+                    ...state,
+                    [title]: {
+                        ...state[title],
+                        questions: state[title].questions.concat([{
+                            question: card.question,
+                            answer: card.answer
+                        }])
+                    }
+                }
+            ))
+        })
+}

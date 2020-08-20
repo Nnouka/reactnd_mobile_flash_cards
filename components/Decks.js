@@ -35,7 +35,10 @@ class Decks extends Component {
                             </View>}
                         badge={
                             {
-                                value: containsQuestion(item) ? item.questions.length : 0,
+                                value: containsQuestion(item) ?
+                                    `${item.questions.length > 1 ? 
+                                        item.questions.length + ' Cards' : 
+                                        item.questions.length + ' Card'}` : '0 Card',
                                 textStyle: {color: white },
                                 containerStyle: {marginTop: -50},
                                 status: containsQuestion(item) ? 'success' : 'primary'
@@ -68,7 +71,7 @@ function mapStateToProps({decks}) {
     const keys = Object.keys(data);
     return {
         loading: decks === undefined,
-        decks: keys.map(key => data[key])
+        decks: keys.reverse().map(key => data[key])
     }
 }
 export default connect(mapStateToProps)(Decks);

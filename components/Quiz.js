@@ -3,10 +3,11 @@ import {Card, Button, Icon} from 'react-native-elements';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {green, lightPurp, purple, red} from "../utils/colors";
 import {connect} from 'react-redux';
+import {underscoreToSpace} from "../utils/strings";
 
 const ANSWER = 'Answer';
 const QUESTION = 'Question';
-const NO_QUESTION_GIST = '🧷 Sorry, You cannot take this quiz at the moment because there is no question';
+const NO_QUESTION_GIST = '🔒 Sorry, You cannot take this quiz at the moment because there is no question';
 const FINISHER_GIST = '🎓 Congratulations, You finished this quiz. See how well you did below. You can always try again'
 class Quiz extends Component {
     state = {
@@ -97,7 +98,7 @@ class Quiz extends Component {
         const {cardCount, title, navigation} = this.props;
         const {toggleTo, cardContent, cardNum, completed, score} = this.state;
         return (
-            <Card title={title}>
+            <Card title={underscoreToSpace(title)}>
                 <View>
                     {
                         !completed &&

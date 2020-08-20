@@ -4,6 +4,8 @@ import {Text, View, StyleSheet} from 'react-native';
 import {green, lightPurp, purple, red, white} from "../utils/colors";
 import {connect} from 'react-redux';
 import {newDeck} from "../actions";
+import {saveDeckTitle} from "../utils/helpers";
+import {spaceToUnderscore} from "../utils/strings";
 
 class NewDeck extends Component {
     state = {
@@ -14,7 +16,7 @@ class NewDeck extends Component {
     onInput(e) {
         const newTitle = e.nativeEvent.text;
         const {decks} = this.props;
-        if (decks[newTitle] !== undefined) {
+        if (decks[spaceToUnderscore(newTitle)] !== undefined) {
             this.setState((prevState) => ({
                 ...prevState,
                 errorMessage: 'Deck Already Exists',
@@ -24,6 +26,7 @@ class NewDeck extends Component {
             this.setState((prevState) => ({
                 ...prevState,
                 newTitle,
+                errorMessage: '',
                 canSubmit: true
             }));
         }
@@ -33,7 +36,8 @@ class NewDeck extends Component {
         const {dispatch, navigation} = this.props;
         if (canSubmit) {
             // dispatch new title action
-            dispatch(newDeck(newTitle));
+            dispatch(newDeck(spaceToUnderscore(newTitle)));
+            saveDeckTitle(spaceToUnderscore(newTitle));
             this.setState((prevState) => ({
                 ...prevState,
                 newTitle: '',
@@ -43,7 +47,7 @@ class NewDeck extends Component {
         }
     }
     render() {
-        const {errorMessage, canSubmit, newTitle} = this.state;
+        const {errorMessage, canSubmit} = this.state;
         return (
             <Card
                 title='New Deck'
@@ -55,8 +59,7 @@ class NewDeck extends Component {
                     placeholder='Deck Title'
                     errorStyle={{color: red}}
                     errorMessage={errorMessage}
-                    onTextInput={(event) => this.onInput(event)}
-                    value={newTitle}
+                    onChange={(event) => this.onInput(event)}
                 />
                 <Button
                     title='Create'

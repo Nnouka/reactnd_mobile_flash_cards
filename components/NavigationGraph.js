@@ -6,10 +6,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import DeckItem from './DeckItem';
 import Quiz from './Quiz';
 import NewDeck from './NewDeck';
+import NewCard from './NewCard';
 
 import {connect} from 'react-redux';
 import {receiveDecks} from "../actions";
-import {getDecksData, getDemoDecks} from "../utils/helpers";
+import {getDecksData} from "../utils/helpers";
 import {underscoreToSpace} from "../utils/strings";
 
 const Tab = createMaterialTopTabNavigator();
@@ -49,6 +50,10 @@ class NavigationGraph extends Component {
                         name="Quiz"
                         options={{ title: getTitle() }}
                         component={Quiz}/>
+                    <MainStack.Screen
+                        name="NewCard"
+                        options={{ title: getTitle() }}
+                        component={NewCard}/>
                 </MainStack.Navigator>
             </NavigationContainer>
         );

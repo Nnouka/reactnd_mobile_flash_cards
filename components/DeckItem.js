@@ -15,6 +15,7 @@ class DeckItem extends Component {
                 </Text>
                 <Button
                     title='Add Card'
+                    onPress={() => navigation.navigate('NewCard')}
                     buttonStyle={styles.buttonStyle} />
                 <Button
                     onPress={() => navigation.navigate('Quiz')}

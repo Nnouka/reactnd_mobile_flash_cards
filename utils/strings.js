@@ -1,5 +1,5 @@
 export function spaceToUnderscore(targetStr) {
-    return targetStr.trim().replace(' ', '_');
+    return targetStr.trim().replace(/ /g, '_');
 }
 
 export function underscoreToSpace(targetStr) {
