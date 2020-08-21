@@ -2,7 +2,7 @@
 ## Mobile Flash Cards
 
 ### Installation (Tested for Android)
-use: `yarn install` or `npm install`
+use: `yarn install`
 
 ### Launch App (Tested for Android)
 use: `yarn andriod`
