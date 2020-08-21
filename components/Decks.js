@@ -16,7 +16,6 @@ class Decks extends Component {
     render() {
         const containsQuestion = (item) => item.questions !== undefined && item.questions.length > 0;
         const {decks, navigation} = this.props;
-        console.log(this.props);
         return (
             <FlatList
                 data={decks}

@@ -88,7 +88,8 @@ function createWelcomeNotification() {
         title: '😍 Welcome On Board',
         message: "👋 don't forget to take one quiz for today! We Plan to notify you daily, starting tomorrow.",
         playSound: true,
-        soundName: 'default'
+        soundName: 'default',
+        id: '-1'
     }
 }
 function notifyAndSetLocation() {
@@ -105,7 +106,6 @@ export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
-            console.log(data);
             if(data === null) {
                 checkNotifications()
                     .then(({status, settings}) => {
@@ -126,7 +126,6 @@ export function setLocalNotification() {
 }
 
 export function setWelcomeNotification() {
-    console.log("Notifications: setting welcome Notification")
     AsyncStorage.getItem(WELCOME_NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
@@ -135,12 +134,14 @@ export function setWelcomeNotification() {
                     .then(({status, settings}) => {
                         if(status === GRANTED) {
                             notification.localNotification(createWelcomeNotification());
+                            AsyncStorage.setItem(WELCOME_NOTIFICATION_KEY, JSON.stringify(true))
                         }
                         else if(status === UNDETERMINED) {
                             // request for permission
                             requestNotifications(['alert', 'sound']).then(({status, settings}) => {
                                 if(status === GRANTED) {
                                     notification.localNotification(createWelcomeNotification());
+                                    AsyncStorage.setItem(WELCOME_NOTIFICATION_KEY, JSON.stringify(true));
                                 }
                             })
                         }

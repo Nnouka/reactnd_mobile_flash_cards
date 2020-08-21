@@ -37,8 +37,8 @@ export default class NotificationService {
     return PushNotification.checkPermissions(cbk);
   }
 
-  cancelNotif() {
-    PushNotification.cancelLocalNotifications({id: ''+this.lastId});
+  cancelNotification(id) {
+    PushNotification.cancelLocalNotifications({id: id});
   }
 
   cancelAll() {

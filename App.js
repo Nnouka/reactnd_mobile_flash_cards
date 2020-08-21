@@ -19,7 +19,7 @@ class App extends Component {
 
     render() {
         return (
-            <Provider store={createStore(reducer, middleware)}>
+            <Provider store={createStore(reducer)}>
                 <View style={styles.container}>
                     <NavigationGraph />
                 </View>
