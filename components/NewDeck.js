@@ -3,7 +3,7 @@ import {Card, Button, Icon, Input} from 'react-native-elements';
 import {Text, View, StyleSheet} from 'react-native';
 import {green, lightPurp, purple, red, white} from "../utils/colors";
 import {connect} from 'react-redux';
-import {newDeck} from "../actions";
+import {addDeckTitle, newDeck} from "../actions";
 import {saveDeckTitle} from "../utils/helpers";
 import {spaceToUnderscore} from "../utils/strings";
 
@@ -43,7 +43,9 @@ class NewDeck extends Component {
                 newTitle: '',
                 canSubmit: false
             }));
-            navigation.navigate('Decks');
+            // set the title to navigate to
+            dispatch(addDeckTitle(spaceToUnderscore(newTitle)));
+            navigation.navigate('Deck');
         }
     }
     render() {

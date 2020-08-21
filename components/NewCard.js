@@ -40,7 +40,7 @@ class NewCard extends Component {
                 newTitle: '',
                 canSubmit: false
             }));
-            navigation.navigate('Decks');
+            navigation.navigate('Deck');
         }
     }
     render() {
@@ -62,7 +62,7 @@ class NewCard extends Component {
                     onChange={(event) => this.onAnswerInput(event)}
                 />
                 <Button
-                    title='Create'
+                    title='Submit'
                     buttonStyle={[styles.buttonStyle, {backgroundColor: green}]}
                     onPress={() => this.onCreate()}
                     disabled={!canSubmit}

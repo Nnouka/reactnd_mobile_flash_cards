@@ -4,6 +4,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {green, lightPurp, purple, red} from "../utils/colors";
 import {connect} from 'react-redux';
 import {underscoreToSpace} from "../utils/strings";
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers";
 
 const ANSWER = 'Answer';
 const QUESTION = 'Question';
@@ -64,9 +65,17 @@ class Quiz extends Component {
             }
         });
     }
+    onFinished() {
+        // Clear local notification
+        clearLocalNotification()
+            .then(setLocalNotification)
+    }
     onAnswered(correct) {
         this.questionStem = this.questionGenerator();
         this.setState((prevState) => {
+            if (this.questionStem === undefined) {
+                this.onFinished();
+            }
             return {
                 ...prevState,
                 cardContent: this.questionStem === undefined
@@ -74,7 +83,8 @@ class Quiz extends Component {
                     : this.questionStem.questionBody.question,
                 cardNum: this.questionStem === undefined ? prevState.cardNum :this.questionStem.index + 1,
                 score: correct ? prevState.score + 1 : prevState.score,
-                completed: this.questionStem === undefined
+                completed: this.questionStem === undefined,
+                toggleTo: ANSWER
             }
         })
     }
@@ -104,7 +114,7 @@ class Quiz extends Component {
                         !completed &&
                         <View>
                             <Text style={styles.pageNum}>
-                                {`${cardNum} / ${cardCount}`}
+                                {`${cardCount - cardNum} remaining / ${cardCount}`}
                             </Text>
                         </View>
                     }
@@ -143,7 +153,7 @@ class Quiz extends Component {
                         this.questionStem !== undefined &&
                         <View>
                             <Button
-                                title={toggleTo}
+                                title={`Show ${toggleTo}`}
                                 titleStyle={styles.toggleBtnText}
                                 type='clear'
                                 onPress={() => this.handleToggleTo()}
