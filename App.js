@@ -7,13 +7,12 @@ import middleware from './middleware'
 
 
 import NavigationGraph from './components/NavigationGraph';
-import {initDecks, setWelcomeNotification} from "./utils/helpers";
+import {setWelcomeNotification} from "./utils/helpers";
 
 
 class App extends Component {
 
     componentDidMount() {
-        initDecks();
         setWelcomeNotification();
     }
 

@@ -10,7 +10,7 @@ import NewCard from './NewCard';
 
 import {connect} from 'react-redux';
 import {receiveDecks} from "../actions";
-import {getDecksData} from "../utils/helpers";
+import {getDecksData, initDecks} from "../utils/helpers";
 import {underscoreToSpace} from "../utils/strings";
 
 const Tab = createMaterialTopTabNavigator();
@@ -28,9 +28,11 @@ const MainStack = createStackNavigator();
 class NavigationGraph extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
-        getDecksData().then((data) => {
-            dispatch(receiveDecks(data))
-        })
+        initDecks().then(() => getDecksData().then(
+            (data) => {
+                dispatch(receiveDecks(data));
+            }
+        ));
     }
     render() {
         const {deckTitle} = this.props

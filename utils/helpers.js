@@ -25,11 +25,11 @@ export function getDeck(title) {
 }
 
 export function initDecks() {
-    AsyncStorage.getItem(DECKS_KEY)
+    return AsyncStorage.getItem(DECKS_KEY)
         .then(JSON.parse)
         .then((data) => {
             if (data == null) {
-                AsyncStorage.setItem(DECKS_KEY, JSON.stringify(DATA))
+               return  AsyncStorage.setItem(DECKS_KEY, JSON.stringify(DATA))
             }
         })
 }
