@@ -49,7 +49,7 @@ class NewDeck extends Component {
         }
     }
     render() {
-        const {errorMessage, canSubmit} = this.state;
+        const {errorMessage, canSubmit, newTitle} = this.state;
         return (
             <Card
                 title='New Deck'
@@ -62,6 +62,7 @@ class NewDeck extends Component {
                     errorStyle={{color: red}}
                     errorMessage={errorMessage}
                     onChange={(event) => this.onInput(event)}
+                    value={newTitle}
                 />
                 <Button
                     title='Create'
