@@ -7,13 +7,14 @@ import middleware from './middleware'
 
 
 import NavigationGraph from './components/NavigationGraph';
-import {setWelcomeNotification} from "./utils/helpers";
+import {setWelcomeNotification, setLocalNotification} from "./utils/helpers";
 
 
 class App extends Component {
 
     componentDidMount() {
         setWelcomeNotification();
+        setLocalNotification();
     }
 
     render() {
